@@ -113,57 +113,66 @@ void getUDP(){
 
 
 // connect to UDP – returns true if successful or false if not
-boolean connectUDP(){
-boolean state = false;
+boolean connectUDP()
+{
+  boolean state = false;
 
-Serial.println("");
-Serial.println("Connecting to UDP");
+  Serial.println("");
+  Serial.println("Connecting to UDP");
 
-if(UDP.begin(localPort) == 1){
-  Serial.println("Connection successful");
-  state = true;
-  }
-  else{
-  Serial.println("Connection failed");
-  }
+  if(UDP.begin(localPort) == 1)
+    {
+    Serial.println("Connection successful");
+    state = true;
+    }
+  else
+    {
+    Serial.println("Connection failed");
+    }
 
-return state;
+  return state;
 }
 // connect to wifi – returns true if successful or false if not
-boolean connectWifi(){
-boolean state = true;
-int i = 0;
-WiFi.begin(ssid, password);
-Serial.println("");
-Serial.println("Connecting to WiFi");
+boolean connectWifi()
+{
+  boolean state = true;
+  int i = 0;
+  WiFi.begin(ssid, password);
+  Serial.println("");
+  Serial.println("Connecting to WiFi");
 
-// Wait for connection
-Serial.print("Connecting");
-while (WiFi.status() != WL_CONNECTED) {
-delay(500);
-Serial.print(".");
-if (i > 10){
-  state = false;
-  break;
-}
-i++;
-}
-if (state){
-  Serial.println("");
-  Serial.print("Connected to ");
-  Serial.println(ssid);
-  Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());
-}
-else {
-  Serial.println("");
-  Serial.println("Connection failed.");
-}
-return state;
+  // Wait for connection
+  Serial.print("Connecting");
+  while (WiFi.status() != WL_CONNECTED) 
+  {
+    delay(500);
+    Serial.print(".");
+    if (i > 10)
+      {
+      state = false;
+      break;
+      }
+    i++;
+  }
+  if (state)
+    {
+    Serial.println("");
+    Serial.print("Connected to ");
+    Serial.println(ssid);
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
+    }
+  else 
+    {
+    Serial.println("");
+    Serial.println("Connection failed.");
+    }
+  return state;
 }
 
 //Get Temperature of 18D20
-void getTemperature() {
+void getTemperature() 
+{
   float tempC;
   float tempF;
   do {
